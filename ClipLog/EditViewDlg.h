@@ -27,11 +27,10 @@ public:
 
 protected:
     virtual void DoDataExchange(CDataExchange* pDX);
-    virtual BOOL OnInitDialog(); // 确保初始化函数声明
+    virtual BOOL OnInitDialog();
     virtual BOOL PreTranslateMessage(MSG* pMsg);
 
-    virtual void OnCancel(); // 覆盖 OnCancel 以处理对话框关闭
-
+    virtual void OnCancel();
 
     DECLARE_MESSAGE_MAP()
 

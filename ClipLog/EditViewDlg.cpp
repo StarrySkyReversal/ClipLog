@@ -30,12 +30,15 @@ BOOL EditViewDlg::OnInitDialog()
 
     m_hDialogHandle = this->GetSafeHwnd();
 
+    m_editCtrl.SetOptions(ECOOP_OR, ECO_SAVESEL);
+
     return TRUE;  // return TRUE unless you set the focus to a control
 }
 
 BEGIN_MESSAGE_MAP(EditViewDlg, CDialogEx)
     ON_BN_CLICKED(IDC_EDIT_VIEW_COPY, &EditViewDlg::OnCopyButton)
     ON_BN_CLICKED(IDC_EDIT_VIEW_CANCEL, &EditViewDlg::OnCancelButton)
+    ON_WM_TIMER()
 END_MESSAGE_MAP()
 
 void EditViewDlg::SetEditData(const CString& data)
@@ -88,11 +91,13 @@ void EditViewDlg::HandleCut()
     m_editCtrl.Cut();
 }
 
-void EditViewDlg::OnCopyButton() {
+void EditViewDlg::OnCopyButton()
+{
     HandleCopy();
 }
 
-void EditViewDlg::OnCancel() {
+void EditViewDlg::OnCancel()
+{
     CDialogEx::OnCancel();
 }
 

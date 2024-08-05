@@ -30,6 +30,13 @@ BOOL EditViewDlg::OnInitDialog()
 
     m_hDialogHandle = this->GetSafeHwnd();
 
+    CHARFORMAT cf;
+    cf.cbSize = sizeof(CHARFORMAT);
+    cf.dwMask = CFM_SIZE;
+    cf.yHeight = 220; // 200 twips = 10 points (1 point = 20 twips)
+
+    m_editCtrl.SetDefaultCharFormat(cf);
+
     return TRUE;  // return TRUE unless you set the focus to a control
 }
 

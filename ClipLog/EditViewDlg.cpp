@@ -30,8 +30,6 @@ BOOL EditViewDlg::OnInitDialog()
 
     m_hDialogHandle = this->GetSafeHwnd();
 
-    m_editCtrl.SetOptions(ECOOP_OR, ECO_SAVESEL);
-
     return TRUE;  // return TRUE unless you set the focus to a control
 }
 

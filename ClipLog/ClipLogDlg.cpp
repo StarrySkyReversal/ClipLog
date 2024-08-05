@@ -470,6 +470,13 @@ void CClipLogDlg::ProcessClipboard()
 		CloseClipboard();
 	}
 
+	// Maximum number of rows for list control
+	if (m_listCtrl.GetItemCount() >= 100) {
+		for (int i = 0; i < m_ClipboardQueue.size(); i++) {
+			m_listCtrl.DeleteItem(m_listCtrl.GetItemCount() - 1);
+		}
+	}
+
 	while (!m_ClipboardQueue.empty())
 	{
 		CString text;
@@ -478,7 +485,7 @@ void CClipLogDlg::ProcessClipboard()
 			text = m_ClipboardQueue.front();
 			m_ClipboardQueue.pop();
 		}
-		//SetDlgItemText(IDC_EDIT1, text);
+
 		std::chrono::system_clock::time_point currentTimestamp = std::chrono::system_clock::now();
 
 		//auto duration = std::chrono::duration_cast<std::chrono::seconds>(currentTimestamp - m_lastClipboardData.timestamp).count();

@@ -18,6 +18,9 @@ public:
     void SetEditData(const CString& data);
     CString GetEditData() const;
 
+    static HWND m_hDialogHandle;
+    static HWND GetDialogHandle() { return m_hDialogHandle; }
+
 #ifdef AFX_DESIGN_TIME
     enum { IDD = IDD_DIALOG1 };
 #endif
@@ -39,10 +42,7 @@ private:
     void HandleCopy();
     void HandleCut();
 
-    bool bHaveCopy; // 必须要有，否则会出现拷贝失败。排查后问题出现在没有执行复制操作将下一次成功的机会用掉了
-
     afx_msg void OnCopyButton();
     afx_msg void OnCancelButton();
 
-    void CopyRichEditContentToClipboard();
 };

@@ -50,6 +50,7 @@ protected:
 	afx_msg void OnSysCommand(UINT nID, LPARAM lParam);
 	afx_msg void OnPaint();
 	afx_msg HCURSOR OnQueryDragIcon();
+	afx_msg void OnDestroy();
 
 	LRESULT OnDrawClipboard(WPARAM wParam, LPARAM lParam);
 	LRESULT OnChangeCbChain(WPARAM wParam, LPARAM lParam);
@@ -60,17 +61,36 @@ protected:
 	void CClipLogDlg::LoadDataToListCtrl();
 
 	void CClipLogDlg::OnListDoubleClick(NMHDR* pNMHDR, LRESULT* pResult);
+	void CClipLogDlg::FilterListItems(const CString& searchText);
+	void CClipLogDlg::OnSearchButtonClicked();
+	void CClipLogDlg::ShowAllListItems();
+
+	LRESULT CClipLogDlg::OnTrayNotify(WPARAM wParam, LPARAM lParam);
+	void CClipLogDlg::ShowTrayMenu();
+	void CClipLogDlg::OnTrayShow();
+	void CClipLogDlg::OnTrayExit();
+	void CClipLogDlg::OnShowOptions();
+	void CClipLogDlg::OnAboutBox();
+	void CClipLogDlg::OnMenuExit();
+	void CClipLogDlg::MinimizeToTray();
+	void CClipLogDlg::ShowFromTray();
+	void CClipLogDlg::OnClose();
+
+	void CClipLogDlg::OnSize(UINT nType, int cx, int cy);
 
 	DECLARE_MESSAGE_MAP()
 
 public:
-	HWND hWndEditViewDlg;
 	HWND m_hWndNextViewer;
-	static bool s_bIgnoreNextClipboardUpdate;
 
 	CListCtrl m_listCtrl;
 	CEdit m_searchEdit;
 	CButton m_searchButton;
+	CMenu m_menu;
+
+	NOTIFYICONDATA m_nid;
+	bool m_bMinimizedToTray;
+	CMenu m_trayMenu;
 
 	ClipboardData m_lastClipboardData;
 };
